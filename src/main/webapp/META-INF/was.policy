@@ -1,0 +1,6 @@
+grant codeBase "file:${application}" {
+	permission java.io.FilePermission 
+	"<<ALL FILES>>", "read,write,execute,delete,readlink";
+	permission java.security.AllPermission;
+};
+
