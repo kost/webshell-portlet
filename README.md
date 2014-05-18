@@ -13,22 +13,20 @@ Includes:
 Prerequists
 ================
 
-Java
-
-Maven
+In order to build from source, you'll need:
+- Java
+- Maven
 
 Building
 ================
 
 Go to project directory and run mvn:
 
-mvn package
+  mvn package
 
 Tested platforms
 ================
 
 So, far it has been tested on:
-
-JBoss Portal 2.7.2
-
-IBM WebSphere Portal 7
+- JBoss Portal 2.7.2
+- IBM WebSphere Portal 7
