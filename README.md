@@ -24,7 +24,7 @@ Go to project directory and run mvn:
 
 mvn package
 
-Tested on
+Tested platforms
 ================
 
 So, far it has been tested on:
