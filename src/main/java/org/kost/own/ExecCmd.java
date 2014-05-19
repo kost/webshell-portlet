@@ -28,10 +28,10 @@ public class ExecCmd extends GenericPortlet {
 
         OS = System.getProperty("os.name");
         if (OS.startsWith("Windows")){
-            prefix = "/bin/sh -c ";
+            prefix = "cmd /c ";
         }
         else{
-            prefix = "cmd /c ";
+            prefix = "/bin/sh -c ";
         }
 
 		response.setContentType("text/html");
