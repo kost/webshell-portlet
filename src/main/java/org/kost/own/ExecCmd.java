@@ -49,7 +49,7 @@ public class ExecCmd extends GenericPortlet {
 		} else {
 			writer.println("<p>Executing: "+prefix+cmd+"</p>");
 			writer.println("<hr><pre>");
-			Process p = Runtime.getRuntime().exec(cmd);
+			Process p = Runtime.getRuntime().exec(prefix+cmd);
 			OutputStream os = p.getOutputStream();
 			InputStream in = p.getInputStream();
 			DataInputStream dis = new DataInputStream(in);
