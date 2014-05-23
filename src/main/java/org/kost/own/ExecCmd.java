@@ -55,6 +55,7 @@ public class ExecCmd extends GenericPortlet {
 				DataInputStream dis = new DataInputStream(in);
 				String disr = dis.readLine();
 				while ( disr != null ) {
+					disr = disr.replaceAll("[>]","&gt;").replaceAll("[<]", "&lt;");
 					writer.println(disr);
 					disr = dis.readLine();
 				}
