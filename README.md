@@ -22,7 +22,7 @@ Building
 
 Go to project directory and run mvn:
 
-  mvn package
+    mvn package
 
 Tested platforms
 ================
