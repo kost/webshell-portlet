@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/kost/webshell-portlet.png)](https://travis-ci.org/kost/webshell-portlet)
+[![Coverage Status](https://coveralls.io/repos/kost/webshell-portlet/badge.png?branch=master)](https://coveralls.io/r/kost/webshell-portlet?branch=master)
+
 webshell-portlet
 ================
 
